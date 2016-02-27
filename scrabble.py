@@ -1,6 +1,4 @@
 import sys
-import os
-
 
 class Menu():
     """Creates a Menu Class, to draw Menu items througout the project  """
@@ -12,13 +10,12 @@ class Menu():
         print('RESULTS'.center(65, '-'))
         print(str(len(filtered_matches)) + ' HITS')
 
-    def clear():
-        os.system('clear')
-
-
 class SrabblePy():
 
     def load_words():
+        """
+        Opens the dictionary file and creates a list of possible words.
+        """
         Menu.title()
         f_open = open('sowpods.txt', 'r+')
         dictionary = f_open.readlines()
@@ -73,10 +70,16 @@ class SrabblePy():
         return availible_words
 
     def display_word(matches):
+        """
+        Displays Each word and is score.
+        """
         for word, score in matches.items():
             print('Word: - ' + word + " | Score: " + str(score))
 
     def score_words(matches):
+        """
+        Scores each word.
+        """
         print('Scoring words...')
         print(str(len(matches)) + ' Words detected.')
         input('\nPress Enter to Display words\n')
