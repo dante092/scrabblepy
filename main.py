@@ -1,21 +1,14 @@
 import scrabble
 
-flag = str
-while flag != 'EXIT':
-
-    rack = scrabble.SrabblePy.create_rack()
-    blankspaces = int(scrabble.SrabblePy.blank_spaces())
-    matches = scrabble.SrabblePy.word_generator(rack)
-    filtered_matches = scrabble.SrabblePy.space_allowed_per_word(matches, blankspaces)
-    scrabble.Menu.display(filtered_matches)
-    scrabble.SrabblePy.display_word(filtered_matches)
-
-    flag = input('press Enter To Enter next rack')
-    flag = flag.upper()
-
-    scrabble.Menu.clear()
+""" Scrabblepy, a commandline utility that allows you to input scrabble letters, and receive a list of possible scored
+ words by CmD_Override"""
 
 
+words = scrabble.SrabblePy.load_words()
+rack= scrabble.SrabblePy.load_rack()
+space_avail = scrabble.SrabblePy.blank_spaces()
+matches = scrabble.SrabblePy.word_generator(rack, words)
+filtered_words = scrabble.SrabblePy.space_allowed_per_word(matches, space_avail)
 
-
-
+score_words = scrabble.SrabblePy.score_words(filtered_words)
+scrabble.SrabblePy.display_word(score_words)
